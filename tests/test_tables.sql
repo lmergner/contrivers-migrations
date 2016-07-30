@@ -1,18 +1,20 @@
 -- Table schema tests
 
 BEGIN;
-    SELECT plan(19);
+    SELECT plan(21);
     SELECT has_table('writing');
-    SELECT has_table('article');
-    SELECT has_table('review');
-    SELECT has_table('author');
-    SELECT has_table('book');
-    SELECT has_table('image');
+    SELECT has_table('articles');
+    SELECT has_table('reviews');
+    SELECT has_table('authors');
+    SELECT has_table('books');
+    SELECT has_table('readings');
+    SELECT has_table('intros');
 
     -- Issues should be going away
     SELECT hasnt_table('issue');
     SELECT hasnt_table('key_value');
     SELECT hasnt_table('template');
+    SELECT hasnt_table('image');
 
     SELECT has_column('writing', 'title');
     SELECT has_column('writing', 'text');
@@ -23,7 +25,7 @@ BEGIN;
     SELECT is_empty('SELECT * FROM WRITING WHERE publish_date IS NULL;', 'writing publish_date should not be null for existing articles');
 
     -- Tags
-    SELECT col_is_unique('tag', 'name', 'tags.name should be unique');
+    SELECT col_is_unique('tags', 'name', 'tags.name should be unique');
 
     -- writing.slug
     SELECT has_column('writing', 'slug');
